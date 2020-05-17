@@ -9,8 +9,9 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'chmod 700 x64/Release/6771Assignment1.exe'
-                sh 'x64/Release/6771Assignment1.exe'
+                sh ' g++ -std=c++17 -Wall -Werror -O2 -o test main.cpp Clexicon.cpp lexicon.cpp'
+		sh 'chmod 700 test'
+                sh './test'
             }
         }
 	}

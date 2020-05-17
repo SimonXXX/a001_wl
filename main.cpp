@@ -3,7 +3,7 @@
 #include <map>
 #include "include/word_ladder.h"
 #include "Clexicon.cpp"
-
+#include <vector>
 
 
 void printLadders(const string& word, std::map<std::string, std::vector<std::string>>& oneLetterAwayLists, std::vector<std::string>& ladder, const std::string& finish) {
@@ -26,7 +26,7 @@ void printLadders(const string& word, std::map<std::string, std::vector<std::str
     ladder.pop_back();
 }
 
-Clexicon Clexicon::s_instance; // initialise singleton Clexicon class
+//Clexicon Clexicon::s_instance; // initialise singleton Clexicon class
 
 int main() {
    // get start and end works from keyboard
@@ -38,7 +38,7 @@ int main() {
     std::getline(cin,endStr);
     
     // set up the Lexicon
-    Clexicon& theLexicon = Clexicon::getInstance();  // reference to the Lexicon class instance  
+    Clexicon theLexicon; // = Clexicon::getInstance();  // reference to the Lexicon class instance  
     if (!theLexicon.getLexicon("words.txt", startStr, endStr)) {
         std::cin.get();
         //return 1;

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iterator>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
@@ -11,12 +12,12 @@ void Error(const std::string& message);
 class Clexicon
 {
 public:
-    static Clexicon getInstance() {
-        return s_instance;
-    }
-private:
-    Clexicon() {}  // Constructor? (the {} brackets) are needed here.
+ //   static Clexicon getInstance() {
+   //     return s_instance;
+   // }
 
+    Clexicon() {}  // Constructor? (the {} brackets) are needed here.
+private:
     // C++ 03
     // ========
     // Don't forget to declare these two. You want to make sure they
@@ -28,9 +29,9 @@ private:
     // C++ 11
     // =======
     // We can use the better technique of deleting the methods
-    // we don't want.\\
+    // we don't want.
 
-    static Clexicon s_instance;
+    //static Clexicon s_instance;
     unordered_set<string> m_lexicon;
     vector<string> m_words4removal;
     int m_stringLength = 0;
@@ -58,14 +59,14 @@ public:
         m_endWrd = endWrd;
         m_lexicon.clear();
         m_words4removal.clear();
-        m_stringLength = m_startWrd.length();
+        m_stringLength = (int)m_startWrd.length();
 
-        if (m_stringLength != m_endWrd.length()) {
+        if (m_stringLength != (int)m_endWrd.length()) {
             Error("start and end words different lengths");
             return false;
         }
 
-        copy_if(istream_iterator<std::string>(f), {}, inserter(m_lexicon, m_lexicon.end()), [&](string str) { return (str.length() == m_stringLength); });
+        copy_if(istream_iterator<std::string>(f), {}, inserter(m_lexicon, m_lexicon.end()), [&](string str) { return ((int)str.length() == m_stringLength); });
 
         if (f.bad()) {
             Error("I/O error while reading");
@@ -90,9 +91,6 @@ public:
 
     vector<string> listOneLetterDifference(string& target) {
         vector<string> outList = {};
-        for (const auto& word : m_lexicon) {
-            //std::cout << word << std::endl;
-        }
         std::unordered_set<string> ::iterator itr;
         string checkWord;
         int count;
