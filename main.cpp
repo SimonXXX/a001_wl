@@ -32,7 +32,7 @@ int main() {
    // get start and end works from keyboard
     std::string startStr;
     std::string endStr;
-    std::cout << "Enter start word(RETURN to quit) : ";
+    std::cout << "Enter start word (RETURN to quit) : ";
     std::getline(cin,startStr);
     std::cout << "Enter destination word : ";
     std::getline(cin,endStr);
